@@ -1,19 +1,27 @@
 package service
 
-import "github.com/arjun-saseendran/banking/domain"
+import (
+	"github.com/arjun-saseendran/banking/domain"
+	"github.com/arjun-saseendran/banking/errs"
+)
 
-type CustomerService interface{
-	GetAllCustomers()([]domain.Customer, error)
+type CustomerService interface {
+	GetAllCustomers() ([]domain.Customer, error)
+	GetCustomer(string) (*domain.Customer, *errs.AppError)
 }
 
-type DefaultCustomerService struct{
+type DefaultCustomerService struct {
 	repo domain.CustomerRepository
 }
 
-func (s DefaultCustomerService) GetAllCustomer() ([]domain.Customer, error){
+func (s DefaultCustomerService) GetAllCustomers() ([]domain.Customer, error) {
 	return s.repo.FindAll()
 }
 
-func NewCustomerService(repository domain.CustomerRepository)DefaultCustomerService{
+func (s DefaultCustomerService) GetCustomer(id string) (*domain.Customer, *errs.AppError) {
+	return s.repo.ById(id)
+}
+
+func NewCustomerService(repository domain.CustomerRepository) DefaultCustomerService {
 	return DefaultCustomerService{repository}
 }
