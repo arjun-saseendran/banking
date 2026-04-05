@@ -6,11 +6,11 @@ const WITHDRAWAL = "withdrawal"
 const DEPOSIT = "deposit"
 
 type TransactionRequest struct {
-	AccountId string `json:"account_id`
+	AccountId string `json:"account_id"`
 	Amount float64 `json:"amount"`
-	TransactionType string `json:"transaction_type`
-	TransactionDate string `json:"transaction_date`
-	CustomerId string `json:"customer_id`
+	TransactionType string `json:"transaction_type"`
+	TransactionDate string `json:"transaction_date"`
+	CustomerId string `json:"customer_id"`
 	
 }
  
@@ -33,7 +33,7 @@ func (r TransactionRequest) Validate() *errs.AppError{
 }
 
 type TransactionResponse struct{
-	TransactionId string `json:"transaction_id`
+	TransactionId string `json:"transaction_id"`
 	AccountId string `json:"account_id"`
 	Amount float64 `json:"amount"`
 	TransactionType string `json:"transaction_type"`
