@@ -61,7 +61,7 @@ func (d AccountRepositoryDb) SaveTransaction(t Transaction) (*Transaction, *errs
 		return nil, errs.NewUnexpectedError("Unexptectd database error!")
 	}
 	account, appErr := d.FindBy(t.AccountId)
-	if err != nil {
+	if appErr != nil {
 		return nil, appErr
 	}
 	t.TransactionId = strconv.FormatInt(transactionId, 10)
