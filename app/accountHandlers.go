@@ -48,7 +48,7 @@ func (h AccountHandler) MakeTransaction(w http.ResponseWriter, r *http.Request) 
 		account, err := h.service.MakeTransaction(request)
 
 		if err != nil {
-			writeResponse(w, err.Code,err.AsMessage())
+			writeResponse(w, err.Code, err.AsMessage())
 		} else {
 			writeResponse(w, http.StatusOK, account)
 		}

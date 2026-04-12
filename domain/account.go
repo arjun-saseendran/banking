@@ -16,15 +16,15 @@ type Account struct {
 	Status      string  `db:"status"`
 }
 
-func (a Account) ToNewAccountResponseDto() *dto.NewAccountResponse {
-	return &dto.NewAccountResponse{AccountId :a.AccountId}
-
-}
-
 type AccountRepository interface {
 	Save(account Account) (*Account, *errs.AppError)
 	SaveTransaction(transaction Transaction) (*Transaction, *errs.AppError)
 	FindBy(accountId string) (*Account, *errs.AppError)
+}
+
+func (a Account) ToNewAccountResponseDto() *dto.NewAccountResponse {
+	return &dto.NewAccountResponse{AccountId: a.AccountId}
+
 }
 
 func (a Account) CanWithdraw(amount float64) bool {
